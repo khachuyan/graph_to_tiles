@@ -277,7 +277,7 @@ for($z = min($profile['render']['max_zoom'], $zoom+$double_zoom); $z >= $min_zoo
             $line_color = $profile['graphics']['line_color'];
         }
                                                                
-        exec('nohup php5 graph_to_tiles_worker.php calculate_edge_coordinate \''.$z.'\' \''.$zoom.'\' \''.$offset_x.'\' \''.$offset_y.'\' \''.$_nodes[$edge_data[0]][1].'\' \''.$_nodes[$edge_data[1]][1].'\' \''.$_nodes[$edge_data[0]][2].'\' \''.$_nodes[$edge_data[1]][2].'\' \''.$tile_size.'\' \'rgb('.$line_color[0].','.$line_color[1].','.$line_color[2].')\' \''.$_nodes[$edge_data[0]][3].'\' \''.$_nodes[$edge_data[1]][3].'\' \''.$profile['graphics']['line_opacity'].'\' \''.$tile_set.'\' > /dev/null 2>&1 &');
+        exec('nohup php graph_to_tiles_worker.php calculate_edge_coordinate \''.$z.'\' \''.$zoom.'\' \''.$offset_x.'\' \''.$offset_y.'\' \''.$_nodes[$edge_data[0]][1].'\' \''.$_nodes[$edge_data[1]][1].'\' \''.$_nodes[$edge_data[0]][2].'\' \''.$_nodes[$edge_data[1]][2].'\' \''.$tile_size.'\' \'rgb('.$line_color[0].','.$line_color[1].','.$line_color[2].')\' \''.$_nodes[$edge_data[0]][3].'\' \''.$_nodes[$edge_data[1]][3].'\' \''.$profile['graphics']['line_opacity'].'\' \''.$tile_set.'\' > /dev/null 2>&1 &');
     }
 }
 
@@ -313,7 +313,7 @@ for($z = min($profile['render']['max_zoom'], $zoom+$double_zoom); $z >= $min_zoo
             $text_stroke_color = $profile['graphics']['text_stroke_color'];
         }
         
-        exec('nohup php5 graph_to_tiles_worker.php calculate_node_coordinate \''.$z.'\' \''.$zoom.'\' \''.$offset_x.'\' \''.$offset_y.'\' \''.$node_data[1].'\' \''.$node_data[2].'\' \''.$node_data[3].'\' \'rgb('.$node_data[4][0].','.$node_data[4][1].','.$node_data[4][2].')\' \'rgb('.$node_data[5][0].','.$node_data[5][1].','.$node_data[5][2].')\' \''.json_encode(array(str_replace("'",'`', $node_data[0]))).'\' \''.$tile_size.'\' \'rgb('.$profile['graphics']['text_fill_color'][0].','.$profile['graphics']['text_fill_color'][1].','.$profile['graphics']['text_fill_color'][2].')\' \'rgb('.$text_stroke_color[0].','.$text_stroke_color[1].','.$text_stroke_color[2].')\' \''.$tile_set.'\' \''.$node_id.'\'  > /dev/null 2>&1 &');
+        exec('nohup php graph_to_tiles_worker.php calculate_node_coordinate \''.$z.'\' \''.$zoom.'\' \''.$offset_x.'\' \''.$offset_y.'\' \''.$node_data[1].'\' \''.$node_data[2].'\' \''.$node_data[3].'\' \'rgb('.$node_data[4][0].','.$node_data[4][1].','.$node_data[4][2].')\' \'rgb('.$node_data[5][0].','.$node_data[5][1].','.$node_data[5][2].')\' \''.json_encode(array(str_replace("'",'`', $node_data[0]))).'\' \''.$tile_size.'\' \'rgb('.$profile['graphics']['text_fill_color'][0].','.$profile['graphics']['text_fill_color'][1].','.$profile['graphics']['text_fill_color'][2].')\' \'rgb('.$text_stroke_color[0].','.$text_stroke_color[1].','.$text_stroke_color[2].')\' \''.$tile_set.'\' \''.$node_id.'\'  > /dev/null 2>&1 &');
         
     }
 }
@@ -387,7 +387,7 @@ foreach(scandir('./graphics/'.$tile_set.'/') as $z){
                 }
             }
             
-            exec('nohup php5 graph_to_tiles_worker.php render_tile '.$z.' '.$tile_x.' '.$tile_y.' \'rgb('.$background_color[0].','.$background_color[1].','.$background_color[2].')\' \''.$tiles_path.'\' '.$tile_size.' \''.$tile_set.'\' > /dev/null 2>&1 &');
+            exec('nohup php graph_to_tiles_worker.php render_tile '.$z.' '.$tile_x.' '.$tile_y.' \'rgb('.$background_color[0].','.$background_color[1].','.$background_color[2].')\' \''.$tiles_path.'\' '.$tile_size.' \''.$tile_set.'\' > /dev/null 2>&1 &');
         
         }
     }
