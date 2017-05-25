@@ -1,0 +1,36 @@
+{
+    "meta":{
+        "tile_set":"les_miserables",
+        "title":"Отверженные"
+    },
+    "render":{
+        "min_zoom":2,
+        "max_zoom":7,
+        "double_zoom":2,
+        "tile_size":512,
+        "default_scale":1
+    },
+    "graphics":{
+        "background_color" : [30,30,30],
+        "background_color_srgb" : [24,24,24],
+        
+        "line_color" : "auto",
+        "line_opacity" : 0.2,
+        
+        "text_fill_color" : [220,220,220],
+        "text_stroke_color" : "auto",
+        "text_color" : [220,220,220]
+    },
+    "legends":{
+        "color":{
+            "title":"Модулярность",
+            "field":"modularity_class",
+            "dictionary":{
+                
+            }
+        }
+    },
+    "settings":{
+        "notification":false
+    }
+}
