@@ -1,5 +1,9 @@
 <?php
 
+@mkdir('./metadata/', 0777, TRUE);
+@mkdir('./logs/', 0777, TRUE);
+ini_set('memory_limit', '10000M');
+
 function error_handler($errno, $errstr, $errfile, $errline){
     switch ($errno) {
         case E_USER_ERROR:
@@ -20,7 +24,6 @@ function error_handler($errno, $errstr, $errfile, $errline){
     }
 }
 set_error_handler("error_handler");
-ini_set('memory_limit', '10000M');
 
 $content = file_get_contents($argv[1]);
 $content = strtr($content, array('viz:size' => 'viz_size', 'viz:position' => 'viz_position', 'viz:color' => 'viz_color'));
@@ -37,10 +40,9 @@ $_nodes = $_edges = array();
 echo "Обработка вершин".PHP_EOL;
 $i = 0;
 $color_legend = array();
-//print_r($profile);die();
+
 foreach($data['graph']['nodes']['node'] as $node){
     $i++;
-    //print_R($node);die();
     $node['viz_position']['@attributes']['x'] = $node['viz_position']['@attributes']['x']*$profile['render']['default_scale'];
     $node['viz_position']['@attributes']['y'] = $node['viz_position']['@attributes']['y']*$profile['render']['default_scale'];
     $node['viz_size']['@attributes']['value'] = $node['viz_size']['@attributes']['value']*$profile['render']['default_scale'];
@@ -106,7 +108,6 @@ foreach($data['graph']['nodes']['node'] as $node){
                                 $description,
                                 $link
                             );
-    //print_r($_nodes);die();
 }
 
 $offset_x = abs($min_x)+500;
@@ -169,9 +170,7 @@ foreach($_edges as $edge){
 }
 
 foreach($_nodes as $node){
-    $svg .= '<circle style="fill: rgb('.$node[4][0].','.$node[4][1].','.$node[4][2].');stroke: rgb('.$node[5][0].','.$node[5][1].','.$node[5][2].');stroke-width: '.($node[3]*0.1).'" cx="'.($node[1]+$offset_x).'" cy="'.($node[2]+$offset_y).'" r="'.ceil($node[3]/2).'"/>';
-    //<text text-anchor="middle" x="'.($node[1]+$offset_x).'" y="'.(($node[2]+$offset_y)+(($node[3]/2)*0.8)/3).'" font-family="Verdana" font-size="'.(($node[3]/2)*0.8).'" style="fill: #fff;stroke: rgb('.$node[5][0].','.$node[5][1].','.$node[5][2].');stroke-width: '.(($node[3]/2)*0.3).';paint-order: stroke;stroke-linecap: butt;stroke-linejoin: miter;">'.htmlentities($node[0]).'</text>';
-    //print_R($node);die();
+    $svg .= '<circle style="fill: rgb('.$node[4][0].','.$node[4][1].','.$node[4][2].');stroke: rgb('.$node[5][0].','.$node[5][1].','.$node[5][2].');stroke-width: '.($node[3]*0.1).'" cx="'.($node[1]+$offset_x).'" cy="'.($node[2]+$offset_y).'" r="'.ceil($node[3]/2).'"/><text text-anchor="middle" x="'.($node[1]+$offset_x).'" y="'.(($node[2]+$offset_y)+(($node[3]/2)*0.8)/3).'" font-family="Verdana" font-size="'.(($node[3]/2)*0.8).'" style="fill: #fff;stroke: rgb('.$node[5][0].','.$node[5][1].','.$node[5][2].');stroke-width: '.(($node[3]/2)*0.3).';paint-order: stroke;stroke-linecap: butt;stroke-linejoin: miter;">'.htmlentities($node[0]).'</text>';
 }
 
 $svg .= '</svg>';

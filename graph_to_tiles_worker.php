@@ -1,6 +1,8 @@
 <?php
 
-if(!isset($argv[1])) die('$argv');
+@mkdir('./metadata/', 0777, TRUE);
+@mkdir('./logs/', 0777, TRUE);
+ini_set('memory_limit', '10000M');
 
 function error_handler($errno, $errstr, $errfile, $errline){
     switch ($errno) {
@@ -34,7 +36,7 @@ if($argv[1] == 'calculate_edge_coordinate'){
     calculate_node_coordinate($argv[2], $argv[3], $argv[4], $argv[5], $argv[6], $argv[7], $argv[8], $argv[9], $argv[10], $argv[11], $argv[12], $argv[13], $argv[14], $argv[15], $argv[16]);
     unlink('./process/'.$argv[15].'/'.$pid.'.pid');
 }elseif($argv[1] == 'render_tile'){
-    file_put_contents('./process/'.$argv[8].'/'.$pid.'.pid', $pid);
+	file_put_contents('./process/'.$argv[8].'/'.$pid.'.pid', $pid);
     render_tile($argv[2], $argv[3], $argv[4], $argv[5], $argv[6], $argv[7], $argv[8]);
     unlink('./process/'.$argv[8].'/'.$pid.'.pid');
 }
@@ -269,7 +271,7 @@ function render_tile($z, $tile_x, $tile_y, $background_color, $tiles_path, $tile
             //$_text->setFillColor($circle[7]);
             //$_text->setTextAntialias(true);
             //$_text->setStrokeAntialias(true);
-            //$_text->setFont("./regular.ttf");
+            //$_text->setFont("./font.ttf");
             //$_text->setTextAlignment(\Imagick::ALIGN_CENTER);
             //$font_size = 0;
             //$bbox = array();
@@ -290,7 +292,7 @@ function render_tile($z, $tile_x, $tile_y, $background_color, $tiles_path, $tile
             //$_text->setFillColor($circle[7]);
             //$_text->setTextAntialias(true);
             //$_text->setStrokeAntialias(true);
-            //$_text->setFont("./regular.ttf");
+            //$_text->setFont("./font.ttf");
             //$_text->setTextAlignment(\Imagick::ALIGN_CENTER);
             //$font_size = 0;
             //$bbox = array();
@@ -311,7 +313,7 @@ function render_tile($z, $tile_x, $tile_y, $background_color, $tiles_path, $tile
             //$_text->setFillColor($circle[7]);
             //$_text->setTextAntialias(true);
             //$_text->setStrokeAntialias(true);
-            //$_text->setFont("./regular.ttf");
+            //$_text->setFont("./font.ttf");
             //$_text->setTextAlignment(\Imagick::ALIGN_CENTER);
             //$font_size = 0;
             //$bbox = array();
@@ -332,7 +334,7 @@ function render_tile($z, $tile_x, $tile_y, $background_color, $tiles_path, $tile
             //$_text->setFillColor($circle[6]);
             //$_text->setTextAntialias(true);
             //$_text->setStrokeAntialias(true);
-            //$_text->setFont("./regular.ttf");
+            //$_text->setFont("./font.ttf");
             //$_text->setTextAlignment(\Imagick::ALIGN_CENTER);
             //$_text->setFontSize($font_size);
             //$_text->setStrokeWidth(0);
@@ -344,7 +346,7 @@ function render_tile($z, $tile_x, $tile_y, $background_color, $tiles_path, $tile
             $_text->setFillColor($circle[7]);
             $_text->setTextAntialias(true);
             $_text->setStrokeAntialias(true);
-            $_text->setFont("./regular.ttf");
+            $_text->setFont("./font.ttf");
             $_text->setTextAlignment(\Imagick::ALIGN_CENTER);
             $font_size = 0;
             $bbox = array();
@@ -365,7 +367,7 @@ function render_tile($z, $tile_x, $tile_y, $background_color, $tiles_path, $tile
             $_text->setFillColor($circle[6]);
             $_text->setTextAntialias(true);
             $_text->setStrokeAntialias(true);
-            $_text->setFont("./regular.ttf");
+            $_text->setFont("./font.ttf");
             $_text->setTextAlignment(\Imagick::ALIGN_CENTER);
             $_text->setFontSize($font_size);
             $_text->setStrokeWidth(0);
